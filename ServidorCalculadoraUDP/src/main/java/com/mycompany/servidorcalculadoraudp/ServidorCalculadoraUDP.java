@@ -34,19 +34,14 @@ public class ServidorCalculadoraUDP {
                 double soma = num1 + num2;
                 double sub = num1 - num2;
                 double mul = num1 * num2;
-
+                
                 String dados = "SOMA = " + soma +
                               "\nSUB = " + sub +
-                              "\nMUL = " + mul;
-
-                if (num2 != 0) {
-                    double div = num1 / num2;
-                    dados += "\nDIV = " + div;
-                } else {
-                    dados += "\nDIV = erro: divisão por zero";
-                }
-
-                String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                              "\nMUL = " + mul +
+                              (num2 != 0 ? "\nDIV = " + (num1/num2) 
+                                            : "\nDIV = erro: divisão por zero");
+                
+                String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 
                 Resposta resposta = new Resposta("OK",timestamp,dados);
 
